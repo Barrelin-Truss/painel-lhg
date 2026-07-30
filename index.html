@@ -498,14 +498,15 @@ setInterval(checarVersion,60000);
 checarVersion();
 
 // reanuda la presentacion si estaba activa antes del reload
-(function(){
+try{
   const idx=sessionStorage.getItem('pl_tv');
-  if(idx===null) return;
-  sessionStorage.removeItem('pl_tv');
-  iniciarTV();
-  tv.idx=Math.min(+idx||0,(1+tv.pags)-1);
-  mostrarSlide();
-})();
+  if(idx!==null){
+    sessionStorage.removeItem('pl_tv');
+    iniciarTV();
+    tv.idx=Math.min(+idx||0,(1+tv.pags)-1);
+    mostrarSlide();
+  }
+}catch(_){}
 </script>
 </body>
 </html>
